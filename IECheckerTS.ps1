@@ -6,8 +6,8 @@ $ie.visible = $true
 $gmailCred = Get-Credential
 $mediaPlayer = New-Object System.Windows.Media.Mediaplayer
 $sendMailParams = @{
-        From = 'lucaswgomez@gmail.com' ## Must be gmail.com
-        To = 'lucaswgomez@gmail.com'
+        From = '$gmailCred.UserName' ## Must be gmail.com
+        To = '$gmailCred.UserName'
         Subject = 'Time Spiral Restock'
         Body = 'Time Spiral restock'
         SMTPServer = 'smtp.gmail.com'
@@ -15,14 +15,14 @@ $sendMailParams = @{
         UseSsl = $true
         Credential = $gmailCred
         }
-#https://www.amazon.com/gp/aod/ajax/ref=dp_aod_pn?asin=B0874B5G6M
-#https://www.amazon.com/gp/aod/ajax/ref=dp_aod_unknown_mbc?asin=B08SSSQHHF
+#https://www.amazon.com/gp/aod/ajax/ref=dp_aod_pn?asin=B0874B5G6M Jumpstart Amazon link
+#https://www.amazon.com/gp/aod/ajax/ref=dp_aod_unknown_mbc?asin=B08SSSQHHF TimeSpiral REMASTERED Amazon link
 while(1) {
     do {
         Write-Host ("$(Get-Date -Format 'MM/dd/yyyy HH:mm') Nothing yet... Started at $StartTime")
         try {
             $ie.Navigate("https://www.amazon.com/gp/aod/ajax/ref=dp_aod_unknown_mbc?asin=B08SSSQHHF")
-            Start-Sleep -s 4
+            Start-Sleep -s 10
             $inputTags = $ie.Document.body.getElementsByClassName("a-button-input")
     
             for($counter = 0;$counter -le $inputTags.length;$counter++) {
@@ -42,13 +42,13 @@ while(1) {
     while($Out -ne 0) {
         $Out = 0
         Write-Host ("$(Get-Date -Format 'MM/dd/yyyy HH:mm')TIME SPIRAL Currently In Stock") -foreground Green
-        $mediaPlayer.Open('E:\Ashley\Default_cheech.mp3')
+        $mediaPlayer.Open('C:\Windows\Media\Alarm02.wav')
         $mediaPlayer.Play()
         Send-MailMessage @sendMailParams
 
         try {
             $ie.Navigate("https://www.amazon.com/gp/aod/ajax/ref=dp_aod_unknown_mbc?asin=B08SSSQHHF")
-            Start-Sleep -s 3
+            Start-Sleep -s 5
             $inputTags = $ie.Document.body.getElementsByClassName("a-button-input")
     
             for($counter = 0;$counter -le $inputTags.length;$counter++) {
