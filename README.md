@@ -11,7 +11,7 @@ The current process is to check Amazon by launching & refreshing an IE browser w
 # Settings
 Currently the time increments for checks are hard coded to:
 	- 10 seconds when waiting
-	- 5 seconds when currently in stock
+	- 5 seconds when currently in stock <br>
 Currently the product hard coded is for: Time Spiral: Remastered
 
 # TODO
